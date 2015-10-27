@@ -18,7 +18,7 @@ public class ChatServer {
 	
 	private List<ClientThread> clients = new ArrayList<>();
 	public ChatServer(int port) {
-		this.port = port;
+		this.port = port;                //chatServer 생성자에 port번호 받는다
 	}
 	/**
 	 * 닉네임 유일성 여부를 검사합니다.
@@ -26,7 +26,7 @@ public class ChatServer {
 	 * @param nickname 검사할 닉네임
 	 * @return 중복된 닉네임이면 false반환함. 중복되지 않았으면 true 반환함.
 	 */
-	public boolean isUniqueNickname ( String nickname ) {
+	public boolean isUniqueNickname ( String nickname ) {           //닉네임 유일성 검사 
 		for( ClientThread c : clients){
 			 if(c.nickName.equals(nickname)){
 				 return false;
@@ -38,7 +38,7 @@ public class ChatServer {
 	 * 현재 채팅 참여자들의 닉네임의 배열을 반환합니다.
 	 * @return
 	 */
-	public String[] listNicknames() {
+	public String[] listNicknames() {                     //참여자들 닉네임 배열 반환 
 		 String[] store = new String[clients.size()];
 		  for( int i=0 ; i<store.length;i++){
 			  store[i] = clients.get(i).nickName;
@@ -46,7 +46,7 @@ public class ChatServer {
 		return store;
 	}
 	
-	public void startServer() throws IOException {
+	public void startServer() throws IOException {                  //server시작 
 		ServerSocket ssock = new ServerSocket(port);
 		logger.info("starting chat sever at " + port);
 		
@@ -59,7 +59,7 @@ public class ChatServer {
 		}
 	}
 	
-	class ClientThread extends Thread {
+	class ClientThread extends Thread {                     
 		Socket sock;
 		InputStream in;
 		OutputStream out;
