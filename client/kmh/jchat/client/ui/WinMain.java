@@ -45,19 +45,20 @@ public class WinMain extends JFrame {
 		LoginPage loginPanel = new LoginPage();
 		loginPanel.main = this;
 		contentPane.add(loginPanel, BorderLayout.CENTER);
-		
-		
+        		
 	}
 	
 	/**
 	 * 채팅 화면으로 바꿔줍니다.
 	 */
-	void setChatPage() {
+	void setChatPage(String NickName) {
+	    
 		contentPane.removeAll();
 		ChatPage page = new ChatPage();
 		contentPane.add(page, BorderLayout.CENTER);
 		contentPane.revalidate(); // 이거 호출 안하면 화면 갱신이 자동으로 안됩니다.
 		
+		this.setTitle(NickName);
 		page.main = this;
 		activePage = page;
 		
@@ -80,6 +81,32 @@ public class WinMain extends JFrame {
 	public void updateChatters(String[] nicknames) {
 		ChatPage page = (ChatPage) activePage;
 		page.renderChatters ( nicknames);
+		
+	}
+
+	/**
+	 * 새로운 대화 참여자를 화면에 추가함.
+	 * @param chatter
+	 */
+	public void addChatter(String chatter) {
+		ChatPage page = (ChatPage)activePage;
+		page.addChatter(chatter);
+	}
+
+	public void add_pub_msg(String sender,String msg) {
+		ChatPage page = (ChatPage)activePage;
+		page.add_pub_msg(sender,msg);
+		
+	}
+
+	public void removeChatter(String logoutchatter) {
+		ChatPage page = (ChatPage)activePage;
+		page.removeChatter( logoutchatter);
+	}
+
+	public void updateMaster(String oldMaster, String newMaster) {
+		ChatPage page = (ChatPage)activePage;
+		page.updateMaster(oldMaster,newMaster);
 		
 	}
 }

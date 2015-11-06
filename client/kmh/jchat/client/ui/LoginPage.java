@@ -123,8 +123,9 @@ public class LoginPage extends JPanel {
 			main.service.connect(host, port);
 			// 2. 로그인 요청 전송
 			main.service.sendLoginRequest(nickName);
-			// 3. 페이지 전환
-			main.setChatPage();
+//			// 3. 페이지 전환
+//			
+//			main.setChatPage(nickName);
 			main.service.sendChatterListRequest();
 			
 		} catch (IOException e) {
